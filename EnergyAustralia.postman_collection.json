@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "62419f0f-e364-4240-b407-98cbbdf54062",
+		"name": "EnergyAus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Record Label 1",
+			"item": []
+		},
+		{
+			"name": "http://eacodingtest.digital.energyaustralia.com.au/api/v1/festivals",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f3a094c3-e346-47e7-bbe5-c2dadb81fdd1",
+						"exec": [
+							"// example using pm.response.to.have",
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms which is \"+pm.response.responseTime, () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"response header  check\", function () {",
+							"  pm.response.to.have.header(‘Content-Type’, ‘application/json’);",
+							"});",
+							"",
+							" //pm.response.should.have.header(‘Content-Type’, ‘application/json’);",
+							" //pm.response.type.should.equal(‘application/json’);",
+							"",
+							"",
+							"var _ = require('lodash'),",
+							"  ",
+							"  responseBody = pm.response.json();",
+							"",
+							"",
+							"",
+							"pm.test('Band name is in sorted order', () => {",
+							"   // Using the orderBy function from lodash ",
+							"   // Read docs: https://lodash.com/docs/4.17.10#orderBy",
+							"    var expectedSortedOrder = _.orderBy(responseBody, ['name'],['desc']);",
+							"",
+							"    pm.expect(responseBody).to.eql(expectedSortedOrder);    ",
+							"});",
+							"",
+							"",
+							"for(i= 0;i < responseBody.length; i++){",
+							"var responseBodyBand = responseBody[i].bands;",
+							"//for(i 0;i<)",
+							"pm.test('Again Band name is in sorted order' + i , () => {",
+							"   // Using the orderBy function from lodash ",
+							"   // Read docs: https://lodash.com/docs/4.17.10#orderBy",
+							"    var expectedSortedOrder = _.orderBy(responseBodyBand, ['name'],['asc']);",
+							"",
+							"console.log(expectedSortedOrder);",
+							"    pm.expect(responseBodyBand).to.eql(expectedSortedOrder);    ",
+							"});",
+							"",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/json"
+					}
+				],
+				"url": {
+					"raw": "http://eacodingtest.digital.energyaustralia.com.au/api/v1/festivals",
+					"protocol": "http",
+					"host": [
+						"eacodingtest",
+						"digital",
+						"energyaustralia",
+						"com",
+						"au"
+					],
+					"path": [
+						"api",
+						"v1",
+						"festivals"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

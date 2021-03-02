@@ -25,7 +25,7 @@
 * install newman 
 * For htmlreport,install htmlextra
 * Install all the dependencies and run the collection using the below command,
-      "newman run /Users/ajina/Downloads/EnergyAus.postman_collection.json -r htmlextra"
+      "newman run /**folderpath**/EnergyAus.postman_collection.json -r htmlextra"
     
 
 ##  Report Generation
